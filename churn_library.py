@@ -10,6 +10,7 @@ Date: 19th Jan
 # import libraries
 
 import pandas as pd 
+import matplotlib.pyplot as plt
 
 
 def import_data(pth):
@@ -21,7 +22,7 @@ def import_data(pth):
     output:
             df: pandas dataframe
     '''	
-	df = pd.read_csv(pth)
+    df = pd.read_csv(pth)
     return df 
 
 
@@ -35,13 +36,20 @@ def perform_eda(df):
             None
     '''
     # print shape of dataframe
-	print(df.shape)
+    print(df.shape)
     
     # print number of null values of each column
     print(df.isnull().sum())
     
-    
+    # print the statistic metrics of each column
     print(df.describe())
+
+    df['Churn'] = df['Attrition_Flag'].apply(lambda val: 0 if val == "Existing Customer" else 1)
+    plt.figure(figsize=(20,10)) 
+    df['Churn'].hist();
+    df['Customer_Age'].hist();
+
+
     
     
 
@@ -123,3 +131,8 @@ def train_models(X_train, X_test, y_train, y_test):
               None
     '''
     pass
+
+if __name__ == "__main__":
+        df = import_data("./data/bank_data.csv")
+        perform_eda(df)
+        

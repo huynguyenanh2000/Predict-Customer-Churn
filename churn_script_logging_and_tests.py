@@ -1,3 +1,17 @@
+"""
+This is the Python Test for the churn_library.py module.
+
+This module will be used to test
+    1. import_data
+    2. peform_eda
+    3. encode_data
+    4. perform_feature_engineering
+    5. train_test_model
+
+Author: Nguyen Huy Anh
+Date: 13th Feb
+"""
+
 import os
 import logging
 import churn_library as cls
